@@ -37,17 +37,8 @@
         <title>Hello World</title>
     </head>
     <body>
-        <div id="in">
-            <label for="inputEmail" class="sr-only">识别码</label>
-            <input type="text" id="code" class="form-control" placeholder="识别码" required="" autofocus="">
-            <label for="inputPassword" class="sr-only">密码</label>
-            <input type="text" id="password" class="form-control" placeholder="密码" required="">
-            <div id="buttonDiv">
-                <button id="save" class="btn btn-ls btn-default" type="button">添加</button>
-                <button id="scan" class="btn btn-ls btn-info" type="button">扫描</button>
-            </div>
-        </div>
-       <!--  
+    <button id="scan" class="btn btn-ls btn-info" type="button">扫描</button>
+
         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
   Launch demo modal
 </button>
@@ -60,7 +51,16 @@
         <h4 class="modal-title" id="myModalLabel">Modal title</h4>
       </div>
       <div class="modal-body">
-        ...
+          <div id="in">
+              <label for="inputEmail" class="sr-only">识别码</label>
+              <input type="text" id="code" class="form-control" placeholder="识别码" required="" autofocus="">
+              <label for="inputPassword" class="sr-only">密码</label>
+              <input type="text" id="password" class="form-control" placeholder="密码" required="">
+              <div id="buttonDiv">
+                  <button id="save" class="btn btn-ls btn-default" type="button">添加</button>
+
+              </div>
+          </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -68,9 +68,8 @@
       </div>
     </div>
   </div>
-</div> -->
+</div>
 
-<img id = "myImage"></img>
         <div id="status"></div>
         <script type="text/javascript" src="cordova.js"></script>
 

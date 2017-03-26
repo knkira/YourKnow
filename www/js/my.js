@@ -25,27 +25,13 @@ $("#scan").click(function(){
 			alert("Scanning failed: " + error);
 		}
 	);
-   //
-   //
-	// console.log(navigator.camera);
-	// navigator.camera.getPicture(onSuccess, onFail, {
-   //    quality: 50,
-   //    destinationType: Camera.DestinationType.DATA_URL
-   // });
-   //
-   // function onSuccess(imageData) {
-   //    var image = document.getElementById('myImage');
-   //    image.src = "data:image/jpeg;base64," + imageData;
-   // }
-   //
-   // function onFail(message) {
-   //    alert('Failed because: ' + message);
-   // }
 });
+function modal() {
+	$('#myModal').on('shown.bs.modal', function () {
+		$('#myInput').focus()
+	})
+}
 
-$('#myModal').on('shown.bs.modal', function () {
-  $('#myInput').focus()
-})
 function save(){
 	var a = $('#code').val();
 	console.log(a);
