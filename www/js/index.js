@@ -20,6 +20,9 @@ var app = {
     // Application Constructor
     initialize: function() {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+        db.transaction(function (tx) {
+            tx.executeSql('CREATE TABLE IF NOT EXISTS LOGSSS (id unique, password)');
+        });
     },
 
     // deviceready Event Handler
@@ -42,5 +45,6 @@ var app = {
         console.log('Received Event: ' + id);
     }
 };
+var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
 
 app.initialize();
