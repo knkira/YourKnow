@@ -9,23 +9,28 @@ document.getElementById("save").addEventListener("click", save);
 
 
 $("#scan").click(function(){
-		// alert(navigator);
-		// console.log(navigator);
-		// //alert(navigator.camera);
-
 	cordova.plugins.barcodeScanner.scan(
 		function (result) {
-			var s = "Result: " + result.text + "<br/>" +
-				"Format: " + result.format + "<br/>" +
-				"Cancelled: " + result.cancelled;
-			
-			$("#status").html(s);
+			var temp = result.splite("/");
+			text = temp[temp.length-1];
+			var s = load(text);
+			if(s=="没有找到"){
+				modal();
+				$("#code").val(text);
+			}
 		},
 		function (error) {
 			alert("Scanning failed: " + error);
 		}
 	);
 });
+
+$("#search").click(function(){
+	var text = $("#searchText").val();
+	var s = load(text);
+	
+});
+
 function modal() {
 	$('#myModal').on('shown.bs.modal', function () {
 		$('#myInput').focus()
@@ -38,9 +43,32 @@ function save(){
 	var code = document.getElementById("code").value;
 	var password = document.getElementById("password").value;
 	db.transaction(function (tx) {
-		tx.executeSql('INSERT INTO LOGSSS (id, password) VALUES (?, ?)',[code,password],function(tx,results){
+		tx.executeSql('INSERT INTO huangche (id, password) VALUES (?, ?)',[code,password],function(tx,results){
 			console.log(tx);
 			console.log(results);
+		});
+
+	});	
+}
+
+function load(text,cb){
+	db.transaction(function (tx) {
+		tx.executeSql('select * from huangche where id like ?',['%'+text+'%'],function(tx,results){
+			var s = "";
+			for(var i = 0;i<results.rows.length;i++){
+				var result = results.rows[i];
+				s += "车号: " + result.id + "----" +
+				"密码: " + result.password + "<br/>"; 
+			
+			}	
+			if(s==""){
+				s="没有找到";
+				cb(s);
+			}
+			
+			$("#status").html(s);
+			return s ; 
+			
 		});
 
 	});	

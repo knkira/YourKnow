@@ -21,7 +21,7 @@ var app = {
     initialize: function() {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
         db.transaction(function (tx) {
-            tx.executeSql('CREATE TABLE IF NOT EXISTS LOGSSS (id unique, password)');
+            tx.executeSql('CREATE TABLE IF NOT EXISTS huangche (id unique, password)');
         });
     },
 
